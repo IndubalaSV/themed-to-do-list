@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>To-Do List</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<h2>To-Do List</h2>
+			<div class="flex-container">
+				<select
+					id="themeSelector"
+					class="theme-selector"
+					onchange="changeTheme()"
+				>
+					<option value="default">Default</option>
+					<option value="vintage">Vintage</option>
+					<option value="robotic">Robotic</option>
+					<option value="casual">Casual</option>
+					<option value="retro">Retro</option>
+					<option value="modern">Modern</option>
+				</select>
+				<input
+					type="text"
+					id="taskInput"
+					class="task-input"
+					placeholder="Add a new task..."
+				/>
+			</div>
+			<button class="add-btn" onclick="addTask()">Add Task</button>
+			<ul id="taskList"></ul>
+			<p id="taskCounter">0/0 completed</p>
+			<button class="share-btn" onclick="generateShareCard()">
+				<i class="fas fa-share-alt"></i> Share To-Do List
+			</button>
+			<div id="shareCardContainer" class="share-card-container">
+				<div id="shareCard" class="share-card"></div>
+				<div class="share-options">
+					<button onclick="copyShareCard()">
+						<i class="fas fa-copy"></i> Copy
+					</button>
+					<button onclick="downloadShareCard()">
+						<i class="fas fa-download"></i> Download
+					</button>
+					<button onclick="closeShareCard()">
+						<i class="fas fa-times"></i> Close
+					</button>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,623 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Share+Tech+Mono&family=Press+Start+2P&family=Montserrat:wght@400;700&family=Courier+Prime&display=swap");
+
+/* Base styles */
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: #f5f5f5;
+	margin: 0;
+}
+
+.container {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	max-width: 400px;
+	margin: 10px;
+}
+
+h2 {
+	text-align: center;
+}
+
+/* Layout */
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.theme-selector,
+.task-input {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+/* Buttons */
+.add-btn,
+.share-btn {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+}
+
+.add-btn {
+	margin-top: 10px;
+	background: #5c67f2;
+}
+
+.share-btn {
+	margin-top: 15px;
+	background: #4caf50;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Task list */
+ul {
+	list-style: none;
+	padding: 0;
+	margin-top: 20px;
+}
+
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	background: #fffcfc;
+	margin-top: 5px;
+	border-radius: 5px;
+	height: auto;
+	position: relative;
+	word-wrap: break-word;
+}
+
+.task-text {
+	flex: 1;
+	margin-right: 62px;
+}
+
+.task-checkbox {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+/* Action buttons */
+.delete-btn {
+	background: red;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+}
+
+.edit-btn {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	right: 45px;
+}
+
+.edit-btn i {
+	font-size: 16px;
+	color: #ffa500;
+}
+
+#taskCounter {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 16px;
+	color: #cb4e4e;
+}
+
+/* Share card styles */
+.share-card-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	overflow-y: auto;
+	flex-direction: column;
+}
+
+.share-card {
+	width: 320px;
+	min-height: 250px;
+	max-height: 80vh;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.share-card-header {
+	text-align: center;
+	margin-bottom: 12px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.share-card-header h2 {
+	font-size: 18px;
+	margin: 0 0 5px 0;
+	color: #333;
+}
+
+.share-card-header p {
+	font-size: 12px;
+	color: #888;
+	margin: 0;
+}
+
+.share-card-tasks {
+	flex: 1;
+	overflow-y: auto;
+	margin-bottom: 10px;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: thin;
+}
+
+.share-card-tasks::-webkit-scrollbar {
+	width: 4px;
+}
+
+.share-card-tasks::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+}
+
+.share-card-item {
+	padding: 8px 10px;
+	border-radius: 6px;
+	margin-bottom: 5px;
+	background: #f8f9fa;
+	display: flex;
+	align-items: center;
+}
+
+.share-card-item.completed {
+	background: #f0f0f0;
+}
+
+.share-card-checkbox {
+	margin-right: 10px;
+	width: 16px;
+	height: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 10px;
+	flex-shrink: 0;
+}
+
+.share-card-item.completed .share-card-checkbox {
+	background: #4caf50;
+	border-color: #4caf50;
+	color: white;
+}
+
+.share-card-text {
+	font-size: 13px;
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.share-card-item.completed .share-card-text {
+	text-decoration: line-through;
+	color: #888;
+}
+
+.share-card-footer {
+	margin-top: auto;
+	padding-top: 10px;
+	border-top: 1px solid #eee;
+	font-size: 12px;
+	color: #666;
+}
+
+/* Progress bar */
+.progress-container {
+	margin: 6px 0;
+}
+
+.progress-bar {
+	height: 6px;
+	background: #eee;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.progress-fill {
+	height: 100%;
+	background: #4caf50;
+	border-radius: 3px;
+	transition: width 0.3s ease;
+}
+
+.share-options {
+	display: flex;
+	gap: 8px;
+	width: 320px;
+	margin: 0 auto 15px auto;
+}
+
+.share-options button {
+	flex: 1;
+	border: none;
+	padding: 10px 0;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	color: white;
+}
+
+.share-options button:nth-child(1) {
+	background: #2196f3;
+}
+.share-options button:nth-child(2) {
+	background: #4caf50;
+}
+.share-options button:nth-child(3) {
+	background: #f44336;
+}
+
+/* Themes */
+/* Vintage theme */
+body.vintage {
+	background: #f4ecd8;
+	font-family: "Courier Prime", Courier, monospace;
+}
+
+body.vintage .container {
+	background: #fdf3e7;
+	color: #5d4037;
+}
+
+body.vintage .task-checkbox {
+	accent-color: #5d4037;
+}
+
+.share-card.theme-vintage {
+	background: #f9f3e6;
+}
+
+.share-card.theme-vintage .progress-fill {
+	background: #d4a373;
+}
+
+/* Robotic theme */
+body.robotic {
+	background: #1e1e1ed1;
+	font-family: "Share Tech Mono", monospace;
+}
+
+body.robotic .container {
+	background: #2d2d2d;
+	color: #00ff00;
+}
+
+body.robotic .task-checkbox {
+	accent-color: #62a939;
+}
+
+.share-card.theme-robotic {
+	background: #232526;
+	color: #e0e0e0;
+}
+
+.share-card.theme-robotic .share-card-header h2,
+.share-card.theme-robotic .share-card-text {
+	color: #e0e0e0;
+}
+
+.share-card.theme-robotic .share-card-item {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.share-card.theme-robotic .progress-fill {
+	background: linear-gradient(to right, #00c6ff, #0072ff);
+}
+
+/* Casual theme */
+body.casual {
+	background: #ffebcd;
+	font-family: "Kaushan Script", cursive;
+}
+
+body.casual .container {
+	background: #fff8dc;
+	color: #8b4513;
+}
+
+body.casual .task-checkbox {
+	accent-color: #8b4513;
+}
+
+.share-card.theme-casual {
+	background: #e0bc93;
+}
+
+.share-card.theme-casual .share-card-header {
+	border-bottom: 1px solid #ffcba4;
+}
+
+.share-card.theme-casual .share-card-header h2 {
+	color: #8b4513;
+	font-family: "Kaushan Script", cursive;
+}
+
+.share-card.theme-casual .share-card-item {
+	background: #fff8dc;
+	border-radius: 10px;
+}
+
+.share-card.theme-casual .share-card-item.completed {
+	background: #ffecce;
+}
+
+.share-card.theme-casual .share-card-checkbox {
+	border: 1.5px solid #d2b48c;
+}
+
+.share-card.theme-casual .share-card-item.completed .share-card-checkbox {
+	background: #cd853f;
+	border-color: #cd853f;
+}
+
+.share-card.theme-casual .share-card-footer {
+	border-top: 1px solid #ffcba4;
+	color: #8b4513;
+	font-family: "Kaushan Script", cursive;
+}
+
+.share-card.theme-casual .progress-bar {
+	background: #ffe4c4;
+}
+
+.share-card.theme-casual .progress-fill {
+	background: linear-gradient(to right, #ffb347, #ffcc33);
+}
+
+/* Retro theme */
+body.retro {
+	background: #ffcc00;
+	font-family: "Press Start 2P", cursive;
+	line-height: 1.2;
+}
+
+body.retro .container {
+	background: #ff6699;
+	color: #000000;
+}
+
+body.retro .add-btn {
+	background: #ff0066;
+}
+
+body.retro .delete-btn {
+	background: #cc0000;
+}
+
+body.retro .task-checkbox {
+	accent-color: #000000;
+}
+
+.share-card.theme-retro {
+	background: #fdf7e3;
+}
+
+.share-card.theme-retro .progress-fill {
+	background: linear-gradient(to right, #ff6b6b, #ffa502);
+}
+
+/* Modern theme */
+body.modern {
+	background: #df5a5a;
+	font-family: "Montserrat", sans-serif;
+	color: #dd0505;
+}
+
+body.modern .container {
+	background: #34495e;
+	color: #e22020;
+}
+
+body.modern .add-btn {
+	background: #e74c3c;
+}
+
+body.modern .delete-btn {
+	background: #c0392b;
+}
+
+body.modern .task-checkbox {
+	accent-color: #ecf0f1;
+}
+
+.share-card.theme-modern {
+	background: #2c3e50;
+	color: #ecf0f1;
+}
+
+.share-card.theme-modern .share-card-header h2,
+.share-card.theme-modern .share-card-text {
+	color: #ecf0f1;
+}
+
+.share-card.theme-modern .share-card-item {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.share-card.theme-modern .progress-fill {
+	background: #3498db;
+}
+
+@media (min-width: 600px) {
+	.flex-container {
+		flex-direction: row;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 15px;
+		width: 95%;
+		max-width: none;
+		margin: 5px;
+	}
+
+	li {
+		padding: 8px;
+	}
+
+	.task-text {
+		font-size: 14px;
+		margin-right: 50px;
+	}
+
+	.edit-btn {
+		right: 35px;
+	}
+
+	.edit-btn i {
+		font-size: 14px;
+	}
+
+	.delete-btn {
+		padding: 3px 8px;
+		font-size: 12px;
+	}
+
+	.share-card {
+		width: 280px;
+		max-height: 75vh;
+		padding: 12px;
+	}
+
+	.share-card-header h2 {
+		font-size: 16px;
+	}
+
+	.share-card-header p {
+		font-size: 11px;
+	}
+
+	.share-card-item {
+		padding: 6px 8px;
+		font-size: 12px;
+	}
+
+	.share-card-text {
+		font-size: 12px;
+	}
+
+	.share-card-checkbox {
+		width: 14px;
+		height: 14px;
+		margin-right: 8px;
+	}
+
+	.share-options {
+		width: 280px;
+		flex-direction: column;
+		gap: 5px;
+	}
+
+	body.retro .container {
+		font-size: 12px;
+	}
+
+	body.retro h2 {
+		font-size: 18px;
+	}
+
+	.share-card-container {
+		padding: 0;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.share-card {
+		width: 280px;
+		max-height: 70vh;
+		padding: 12px;
+		margin: 0 auto 10px auto;
+	}
+
+	.share-options {
+		width: 280px;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 8px;
+		margin: 0 auto;
+	}
+
+	.share-options button {
+		width: 100%;
+		max-width: 200px;
+		padding: 8px 0;
+		border-radius: 5px;
+		font-size: 13px;
+		margin: 0 auto;
+		height: 36px;
+	}
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+	.share-card {
+		width: 260px;
+		max-height: 70vh;
+		padding: 10px;
+	}
+
+	.share-options {
+		width: 260px;
+	}
+
+	.share-options button {
+		max-width: 180px;
+		height: 32px;
+		font-size: 12px;
+	}
+
+	.share-card-footer {
+		font-size: 10px;
+	}
+}
